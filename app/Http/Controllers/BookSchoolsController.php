@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Book_schools;
 use App\Models\Books;
 use App\Models\Schools;
+use App\Models\Pinjam;
+use DB;
 use Illuminate\Http\Request;
 
 class BookSchoolsController extends Controller
@@ -19,12 +21,20 @@ class BookSchoolsController extends Controller
         $data = Book_schools::with('Books')->with('Schools')->get();
         // dd ($data);
         // dump($data);
+        $p = Pinjam::all();
+        foreach($p as $q){
+            $pinjam = Book_schools::with('Books')->with('Schools')->where('id', $q->id_pinjam)->get();;
+
+        }
+       
+        // dd($pinjam);
         $school = Schools::all();
         $book = Books::all();
         return view('home',[
             'book_schools' => $data,
             'book' => $book,
-            'schools' => $school
+            'schools' => $school,
+            'pinjam' => $pinjam
         ])->with('i');
     }
 
@@ -116,8 +126,8 @@ class BookSchoolsController extends Controller
         $cekbook = Book_schools::where('book_id',$request->book)->count();
         // dd($cekbook);
         $cekschool = Book_schools::where('school_id',$request->school)->count();
-        if($cekbook < 2){
-            if($cekschool < 3){
+        if($cekbook < 4){
+            if($cekschool < 5){
             $data = Book_schools::find($book_schools)->first();
             $data->book_id = $request->book;
             $data->school_id = $request->school; 

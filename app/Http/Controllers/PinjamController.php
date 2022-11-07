@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Models\pinjam;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,13 @@ class PinjamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(Auth::user()->name);
+        $pinjam = new Pinjam;
+        $pinjam->name = Auth::user()->name;
+        $pinjam->id_pinjam = $request->id_pinjam;
+        $pinjam->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +86,9 @@ class PinjamController extends Controller
      */
     public function destroy(pinjam $pinjam)
     {
-        //
+        $pinjam = Book_schools::find($pinjam)->first();
+        $pinjam->delete();
+
+        return redirect()->back();
     }
 }

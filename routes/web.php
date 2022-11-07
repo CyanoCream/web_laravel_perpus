@@ -29,11 +29,14 @@ Route::get('/tampil/{book_schools}', [App\Http\Controllers\BookSchoolsController
 Route::post('/create/book', [App\Http\Controllers\BooksController::class, 'store'])->name('create.book')->middleware('auth');
 Route::post('/create/school', [App\Http\Controllers\SchoolsController::class, 'store'])->name('create.school')->middleware('auth');
 Route::post('/create/pivot', [App\Http\Controllers\BookSchoolsController::class, 'store'])->name('create.pivot')->middleware('auth');
+Route::post('/create/pinjam', [App\Http\Controllers\PinjamController::class, 'store'])->name('create.pinjam')->middleware('auth');
+
 
 // Delete Data
 Route::get('/delete/book/{books}', [App\Http\Controllers\BooksController::class, 'destroy'])->name('delete.book')->middleware('auth');
 Route::get('/delete/school/{schools}', [App\Http\Controllers\SchoolsController::class, 'destroy'])->name('delete.school')->middleware('auth');
 Route::get('/delete/pivot/{book_schools}', [App\Http\Controllers\BookSchoolsController::class, 'destroy'])->name('delete.pivot')->middleware('auth');
+Route::get('/delete/pinjam/{pinjam}', [App\Http\Controllers\PinjamController::class, 'destroy'])->name('delete.pinjam')->middleware('auth');
 
 // Edit Data
 Route::post('/edit/book/{books}', [App\Http\Controllers\BooksController::class, 'update'])->name('update.book')->middleware('auth');

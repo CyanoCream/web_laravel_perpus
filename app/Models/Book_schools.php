@@ -19,4 +19,8 @@ class Book_schools extends Model
     public function books(){
         return $this->belongsTo(Books::class, 'book_id');
     }
+
+    // public function pinjam(){
+    //     return $this->belongsTo(Pinjams::class, 'id_pinjam');
+    // }
 }

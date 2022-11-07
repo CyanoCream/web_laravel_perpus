@@ -17,7 +17,8 @@ class CreatePinjamsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->bigInteger('id_pinjam');
+            $table->bigInteger('id_pinjam')->unsigned();
+            $table->foreign('id_pinjam')->references('id')->on('book_schools')->onDelete('cascade');
         });
     }
 
