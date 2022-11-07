@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Books extends Model
 {
     use HasFactory;
+    protected $table = 'books';
+    protected $fillable =[];
+
+    public function schools(){
+        return $this->belongsToMany('App\Models\Schools');
+    }
 }

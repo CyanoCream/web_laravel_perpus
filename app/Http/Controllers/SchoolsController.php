@@ -35,7 +35,11 @@ class SchoolsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $school = new Schools;
+        $school->name = $request->name;
+        $school->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -69,7 +73,11 @@ class SchoolsController extends Controller
      */
     public function update(Request $request, Schools $schools)
     {
-        //
+        $school = Schools::find($schools)->first();
+        $school->name = $request->name;
+        $school->update();
+
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +88,9 @@ class SchoolsController extends Controller
      */
     public function destroy(Schools $schools)
     {
-        //
+        $school = Schools::find($schools)->first();
+        $school->delete();
+        
+        return redirect()->back();
     }
 }

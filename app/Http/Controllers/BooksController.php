@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\Schools;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
@@ -14,7 +15,15 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //
+
+        $book = Books::all();
+        $school = Schools::all();
+        // dd($book);
+        // return $book;
+        return view ('crud.index',[
+            'books' => $book,
+            'schools' => $school
+        ])->with('i')->with('index');
     }
 
     /**
@@ -24,7 +33,8 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        // 
+        
     }
 
     /**
@@ -35,7 +45,10 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Books;
+        $book->name = $request->name;
+        $book->save();
+        return redirect()->back();
     }
 
     /**
@@ -69,7 +82,11 @@ class BooksController extends Controller
      */
     public function update(Request $request, Books $books)
     {
-        //
+        $book = Books::find($books)->first();
+        $book->name = $request->name;
+        $book->update();
+
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +97,9 @@ class BooksController extends Controller
      */
     public function destroy(Books $books)
     {
-        //
+        $book = Books::find($books)->first();
+        $book->delete();
+
+        return redirect()->back();
     }
 }

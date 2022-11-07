@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
- 
-<h3 class="m-5 text-center">CRUD Keseluruhan Tabel Book_Scools</h3>
-<h6 class="ml-5 mr-5 mb-5 mt-1 text-center">Untuk Menampilkan data Buku tiap Sekolah Klik Nama Sekolah</h6>
-<h6 class="ml-5 mr-5 mb-5 mt-1 text-center">Untuk CRUD Data Buku dan Data Sekolah Silahkan klik navbar drop down Tampil data CRUD</h6>
-       
+<h3 class="m-5 text-center">Data Buku Pada {{$book_schools[0]->schools->name}}</h3>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,7 +10,6 @@
         Tambah Buku
         </button>
         @include('create')
-       
       </div>
         <table class="table">
             <thead>
@@ -30,7 +25,7 @@
                     <tr>
                     <th scope="row">{{++$i}}</th>
                     <td>{{$row->books->name}}</td>
-                    <td><a href="{{route('data.sekolah',['book_schools' => $row->id])}}" target="_blank"> {{$row->schools->name}} </a></td>
+                    <td>{{$row->schools->name}}</td>
                     <td>
                         <a href="{{route('delete.pivot',['book_schools' => $row->id])}}" type="button" class="btn btn-danger">Hapus</a>
                         <button  type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$row->id}}">Edit</button>
