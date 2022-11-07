@@ -16,6 +16,10 @@ class CreateBookSchoolsTable extends Migration
         Schema::create('book_schools', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->bigInteger('book_id')->unsigned();
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->bigInteger('school_id')->unsigned();
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
         });
     }
 

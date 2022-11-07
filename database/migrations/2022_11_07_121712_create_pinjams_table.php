@@ -16,6 +16,8 @@ class CreatePinjamsTable extends Migration
         Schema::create('pinjams', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->bigInteger('id_pinjam');
         });
     }
 
